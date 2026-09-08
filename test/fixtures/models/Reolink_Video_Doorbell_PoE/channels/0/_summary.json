@@ -1,0 +1,9 @@
+{
+  "collectedAt": "2026-09-07T22:21:06.000Z",
+  "model": "Reolink Video Doorbell PoE",
+  "itemNo": "DB_566128M5MP_P",
+  "firmwareVersion": "v3.0.0.2033_23041302",
+  "channel": 0,
+  "source": "github issue #25 debug logs (plugin 0.5.55, standalone TCP)",
+  "note": "First captured doorbell whose SupportInfo carries NO doorbellVersion key."
+}

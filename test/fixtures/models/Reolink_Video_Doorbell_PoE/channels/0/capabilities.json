@@ -1,0 +1,19 @@
+{
+  "capabilities": {
+    "channel": 0,
+    "hasPan": false,
+    "hasTilt": false,
+    "hasZoom": false,
+    "hasPresets": false,
+    "hasPtz": false,
+    "hasBattery": false,
+    "hasIntercom": true,
+    "hasSiren": true,
+    "hasFloodlight": true,
+    "hasPir": false,
+    "isDoorbell": false,
+    "hasAutotracking": false,
+    "hasWirelessChime": false,
+    "ptzMode": "none"
+  }
+}

@@ -12177,8 +12177,30 @@ export class ReolinkBaichuanApi {
     // Find the best SupportItem for this channel
     const supportItem = getSupportItemForChannel(support, ch);
 
+    // The model name is the only doorbell signal some firmwares give us: the
+    // Reolink Video Doorbell PoE (issue #25) reports no `doorbellVersion` in
+    // SupportInfo at all, so `isDoorbellFromSupport` cannot see it. Best-effort
+    // — a device that will not name itself simply falls back to the support
+    // flag, exactly as before. The NVR channel path already does this
+    // (see `getChannelCapabilities`); this is the standalone twin.
+    let model: string | undefined;
+    try {
+      const info = await this.getInfo(undefined, { timeoutMs: 5000 });
+      model = typeof info?.type === "string" ? info.type : undefined;
+    } catch (e) {
+      this.logger.debug(
+        "[ReolinkBaichuanApi] getDeviceCapabilities: getInfo(type) failed",
+        {
+          host: this.host,
+          channel: ch,
+          err: e instanceof Error ? e.message : String(e),
+        },
+      );
+    }
+
     const capabilities = computeDeviceCapabilities({
       channel: ch,
+      ...(model != null && { model }),
       ...(support != null && { support }),
       ...(abilities != null && { abilities }),
     });
